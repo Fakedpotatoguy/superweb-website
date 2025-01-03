@@ -4,14 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Video</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #007BFF;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Upload a Video</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="video" accept="video/*" required>
-        <button type="submit">Upload</button>
-    </form>
-    <a href="/">Back to Home</a>
+    <div class="navbar">
+        <a href="/">Home</a>
+    </div>
+
+    <div class="container">
+        <h1>Upload a Video</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="video">Choose a Video File:</label>
+            <input type="file" name="video" accept="video/mp4" required><br><br>
+            <button type="submit">Upload Video</button>
+        </form>
+        <br>
+        <a href="/">Back to Home</a>
+    </div>
 </body>
 </html>
