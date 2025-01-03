@@ -3,26 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyTube</title>
+    <title>MyTube - Home</title>
     <style>
-        /* General Styles */
+        /* Styling for the page */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
+            color: #333;
             margin: 0;
             padding: 0;
         }
 
-        h1, h2 {
-            text-align: center;
-            color: #007BFF;
-        }
-
-        /* Navbar */
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             background-color: #007BFF;
             padding: 10px 20px;
             color: white;
@@ -31,8 +23,8 @@
         .navbar a {
             text-decoration: none;
             color: white;
-            font-size: 18px;
-            padding: 10px 15px;
+            padding: 10px;
+            margin-right: 10px;
             border-radius: 5px;
         }
 
@@ -40,110 +32,48 @@
             background-color: #0056b3;
         }
 
-        /* Container */
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
             padding: 20px;
         }
 
-        /* Media List */
-        .media-list {
+        .video-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
-        .media-list ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .media-list li {
-            margin: 10px;
-            width: 250px;
-            text-align: center;
-        }
-
-        .media-link {
+        .video-list a {
             text-decoration: none;
-            font-size: 18px;
             color: #007BFF;
+            margin: 10px;
         }
 
-        .media-link:hover {
+        .video-list a:hover {
             text-decoration: underline;
-        }
-
-        .thumbnail {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        /* Video Player */
-        .video-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        video {
-            width: 100%;
-            max-width: 800px;
-        }
-
-        button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            display: block;
-            margin: 20px auto;
-        }
-
-        button:hover {
-            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-
-    <!-- Navbar -->
     <div class="navbar">
-        <a href="/" class="home-btn">Home</a>
-        <a href="/upload" class="upload-btn">Upload a Media File</a>
+        <a href="/">Home</a>
+        <a href="/upload">Upload a Video</a>  <!-- Make sure this links to the upload page -->
     </div>
 
-    <!-- Main Container -->
     <div class="container">
         <h1>Welcome to MyTube</h1>
         <h2>Available Videos</h2>
-        <div class="media-list">
-            <ul>
-                {% if videos %}
+        <div class="video-list">
+            {% if videos %}
+                <ul>
                     {% for video in videos %}
                         <li>
-                            <!-- Video Thumbnail -->
-                            <img src="{{ url_for('static', filename='thumbnails/' + video + '.jpg') }}" class="thumbnail" alt="Video Thumbnail">
-                            <br>
-                            <a href="{{ url_for('watch', filename=video) }}" class="media-link">{{ video }}</a>
+                            <a href="{{ url_for('watch', filename=video) }}">{{ video }}</a>
                         </li>
                     {% endfor %}
-                {% else %}
-                    <p>No videos uploaded yet. Please upload a video.</p>
-                {% endif %}
-            </ul>
+                </ul>
+            {% else %}
+                <p>No videos uploaded yet. Please upload a video.</p>
+            {% endif %}
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer style="text-align: center; padding: 20px; background-color: #007BFF; color: white;">
-        <p>&copy; 2025 MyTube. All Rights Reserved.</p>
-    </footer>
-
 </body>
 </html>
